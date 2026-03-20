@@ -1,8 +1,8 @@
 import os
-from backend.models.CLIP import recognize_objects
+from models.CLIP import recognize_objects
 
 
-def process_folder_clip(folder_path,query='query'):
+def process_folder_clip(folder_path,query='dust'):
     results = []
     clip_tags = []
     for filename in os.listdir(folder_path):
@@ -22,4 +22,4 @@ def process_folder_clip(folder_path,query='query'):
     
     
     return results
-print(process_folder_clip('/home/alok/my_files/projects/hackathon/test/'))
+# print(process_folder_clip('/home/alok/my_files/projects/hackathon/test/'))

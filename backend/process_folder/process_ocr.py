@@ -1,6 +1,6 @@
 import os # handle the file path stuff
-from backend.models.OCR import extract_text # extract the text
-from backend.db.db_utils import save_file,get_all_files_path,update_file
+from models.OCR import extract_text # extract the text
+from db.db_utils import save_file,get_all_files_path,update_file
 
 def process_folder_ocr(folder_path):
     results = []

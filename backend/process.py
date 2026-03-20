@@ -54,8 +54,11 @@ def fullProcess(qry,folder_path):
 
     clip_match = [] # contains the objects with the max prob == that of the given query
     for ele in clip_res: # getting the max prob elements from the clip res
-        m_value = max(ele['clip_tags'].values())
-        if((ele['clip_tags'][qry])==m_value):
+        
+        THRESHOLD = 0.9
+        qry_tag = ele['clip_tags']
+        m_value = max(qry_tag.values())
+        if(qry_tag[f"photo of {qry}"]== m_value and m_value>THRESHOLD ):
             clip_match.append(ele)
     
     ocr_res = search_files_ocr(qry)
@@ -75,4 +78,4 @@ def fullProcess(qry,folder_path):
 
     path_list= list(set(path_list))
     return {'all_matching_path':path_list,'clip_path':clip_path,'ocr_path':ocr_path}
-print(fullProcess('dan brown','/home/alok/my_files/projects/hackathon/test/'))
+# print(fullProcess('aadhaar','/home/alok/my_files/projects/hackathon/test/'))

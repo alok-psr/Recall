@@ -1,7 +1,9 @@
 from fastapi import FastAPI  # pyright: ignore[reportMissingImports]
 from pydantic import BaseModel
-from process_folder.process_ocr import process_folder_ocr
 from db.db_utils import delete_file, init_db,search_files_ocr
+from process_folder.process_ocr import process_folder_ocr
+from process import fullProcess
+
 app = FastAPI()
 
 @app.get('/')
@@ -12,11 +14,13 @@ async def hello():
     except:
         return {" unable to connect to db"}
 
-@app.get('/fullSearch')
-async def fullSearch(qry:str):
-    # do the full process here.. 
-    return qry
-
+@app.get('/full_search')
+async def fullSearch(qry:str,folder_path:str):
+    try:
+        res = fullProcess(qry,folder_path) 
+        return res
+    except:
+        return{'msg': 'unable to search'}
 
 # -------- index files -------------
 class IndexBody(BaseModel):
