@@ -39,9 +39,9 @@ def update_file(file_path: str, ocr_text: str):
 def delete_file(file_path: str):
     conn = get_db()
     conn.execute("""
-        DELETE from file 
-        where file_path = ?
-    """, ( file_path))
+        DELETE FROM files 
+        WHERE file_path = ?
+    """, (file_path,))
     conn.commit()
     conn.close()
 
